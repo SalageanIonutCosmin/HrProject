@@ -15,7 +15,6 @@ public class Salary {
     private String endDate;
     @Column(name = "taxes")
     private Integer taxes;
-    @Column(name = "idEmployee")
     @ManyToOne
     @JoinColumn(name = "idEmployee", nullable = false)
     private Employee employee;

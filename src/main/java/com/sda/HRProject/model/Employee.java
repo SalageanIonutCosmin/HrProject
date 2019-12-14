@@ -22,7 +22,7 @@ public class Employee {
     @Column(name = "position")
     private String position;
     @Column(name = "daysOff")
-    private String daysOff;
+    private Integer daysOff;
     @Column(name = "norm")
     private String norm;
     @Column(name = "hireDate")
@@ -31,6 +31,20 @@ public class Employee {
     private String endDate;
     @ManyToMany(mappedBy = "employeeList")
     private List<Company> companyList = new ArrayList<>();
+    @OneToMany(mappedBy = "employee")
+    private List<Salary> salaryList = new ArrayList<>();
+
+    public boolean isStudies() {
+        return studies;
+    }
+
+    public List<Salary> getSalaryList() {
+        return salaryList;
+    }
+
+    public void setSalaryList(List<Salary> salaryList) {
+        this.salaryList = salaryList;
+    }
 
     public List<Company> getCompanyList() {
         return companyList;
@@ -80,7 +94,7 @@ public class Employee {
         this.CNP = CNP;
     }
 
-    public boolean isStudies() {
+    public boolean getStudies() {
         return studies;
     }
 
@@ -96,11 +110,11 @@ public class Employee {
         this.position = position;
     }
 
-    public String getDaysOff() {
+    public Integer getDaysOff() {
         return daysOff;
     }
 
-    public void setDaysOff(String daysOff) {
+    public void setDaysOff(Integer daysOff) {
         this.daysOff = daysOff;
     }
 
