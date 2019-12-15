@@ -5,6 +5,7 @@ import com.sda.HRProject.model.User;
 import com.sda.HRProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +17,49 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "")
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
                           @RequestParam(value = "size", defaultValue = "100") Integer size,
                           ModelMap modelMap) {
         List<UserDto> userDtos = userService.findAll(page, size);
         modelMap.addAttribute("userList", userDtos);
         return "userListView";
+    }
+
+    @GetMapping(value = "/add")
+    public String addNewUserView(Model model) {
+        model.addAttribute("user", new UserDto());
+        return "userAddView";
+    }
+
+    @PostMapping(value = "/add")
+    public String addUser(@ModelAttribute("user") User user, ModelMap modelMap) {
+        List<User> userList = userService.addUser(user);
+        modelMap.addAttribute("userList", userList);
+        return "userListView";
+    }
+
+    @GetMapping(value = "/update/{id}")
+    public String updateUserView(@PathVariable(name = "id") Integer id,
+                                 ModelMap modelMap) {
+        User user = userService.findById(id);
+        modelMap.addAttribute("user", user);
+        return "userUpdateView";
+    }
+
+    @PostMapping(value = "/update")
+    public String updateUserSave(@ModelAttribute("user") User user,
+                                 ModelMap modelMap) {
+        List<User> userList = userService.updateUser(user);
+        modelMap.addAttribute("userList", userList);
+        return "redirect:/users/";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String deleteUser(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
+        List<User> userList = userService.deleteUser(id);
+        modelMap.addAttribute("userList", userList);
+        return "redirect:/users/";
     }
 
     @GetMapping(value = "{id}")
@@ -60,41 +97,12 @@ public class UserController {
         return "userListView";
     }
 
-    @PostMapping(value = "")
-    public String addUser(@RequestBody User user, ModelMap modelMap) {
-        List<User> userList = userService.addUser(user);
-        modelMap.addAttribute("userList", userList);
-        return "userListView";
-    }
-
-    @GetMapping(value = "/update")
-    public String updateUserView(@PathVariable(name = "id") Integer id,
-                                 ModelMap modelMap) {
-        User user = userService.findById(id);
-        modelMap.addAttribute("userList", user);
-        return "userUpdateView";
-    }
-
-    @PostMapping(value = "/update")
-    public String updateUserSave(@PathVariable(name = "id") Integer id,
-                                 @RequestBody User user,
-                                 ModelMap modelMap) {
-        List<User> userList = userService.updateUser(id, user);
-        modelMap.addAttribute("userList", userList);
-        return "userListView";
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public String deleteUser(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
-        List<User> userList = userService.deleteUser(id);
-        modelMap.addAttribute("userList", userList);
-        return "userListView";
-    }
-
     @GetMapping(value = "/count")
-    public String cound(ModelMap modelMap) {
+    public String count(ModelMap modelMap) {
         long count = userService.count();
         modelMap.addAttribute("userList", count);
         return "userListView";
     }
+
+
 }
