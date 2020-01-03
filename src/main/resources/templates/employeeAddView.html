@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new employee</title>
+</head>
+<body>
+<div align="center">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully registered a company!</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-info">Unable to register a company!</div>
+    </div>
+    <form th:action="@{/employees/add}" th:object="${employee}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="firstName" class="control-label">First Name</label>
+                </td>
+                <td>
+                    <input id="firstName" class="form-control" th:field="*{firstName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="lastName" class="control-label">Last Name</label>
+                </td>
+                <td>
+                    <input id="lastName" class="form-control" th:field="*{lastName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="address" class="control-label">Address</label>
+                </td>
+                <td>
+                    <input id="address" class="form-control" th:field="*{address}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="CNP" class="control-label">CNP</label>
+                </td>
+                <td>
+                    <input id="CNP" class="form-control" th:field="*{CNP}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="studies" class="control-label">Studies</label>
+                </td>
+                <td>
+                    <input id="studies" class="form-control" th:field="*{studies}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="position" class="control-label">Position</label>
+                </td>
+                <td>
+                    <input id="position" class="form-control" th:field="*{position}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="daysOff" class="control-label">Days Off</label>
+                </td>
+                <td>
+                    <input id="daysOff" class="form-control" th:field="*{daysOff}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="norm" class="control-label">Norm</label>
+                </td>
+                <td>
+                    <input id="norm" class="form-control" th:field="*{norm}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="hireDate" class="control-label">Hire Date</label>
+                </td>
+                <td>
+                    <input id="hireDate" class="form-control" th:field="*{hireDate}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="endDate" class="control-label">End Date</label>
+                </td>
+                <td>
+                    <input id="endDate" class="form-control" th:field="*{endDate}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn">Create</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

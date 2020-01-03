@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<h1 align="center">Company Edit</h1>
+<div align="center">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully registered</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-info">Unable to create Company</div>
+    </div>
+    <form th:action="@{/companies/update}" th:object="${company}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="name" class="control-label">Name</label>
+                </td>
+                <td>
+                    <input id="name" class="form-control" th:field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="domain" class="control-label">Domain</label>
+                </td>
+                <td>
+                    <input id="domain" class="form-control" th:field="*{domain}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="fiscalCode" class="control-label">Fiscal Code</label>
+                </td>
+                <td>
+                    <input id="fiscalCode" class="form-control" th:field="*{fiscalCode}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="registrationNumber" class="control-label">Registration Number</label>
+                </td>
+                <td>
+                    <input id="registrationNumber" class="form-control" th:field="*{registrationNumber}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="CAENCode" class="control-label">CAEN Code</label>
+                </td>
+                <td>
+                    <input id="CAENCode" class="form-control" th:field="*{CAENCode}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="address" class="control-label">Address</label>
+                </td>
+                <td>
+                    <input id="address" class="form-control" th:field="*{address}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="administratorName" class="control-label">Administrator Name</label>
+                </td>
+                <td>
+                    <input id="administratorName" class="form-control" th:field="*{administratorName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="idCompany" type="hidden" th:field="*{idCompany}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn">Update</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

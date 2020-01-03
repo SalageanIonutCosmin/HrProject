@@ -76,24 +76,13 @@ public class SalaryService {
         return salaryList;
     }
 
-    public List<Salary> updateSalary(Integer id, Salary salary) {
-        Optional<Salary> salaryById = salaryRepository.findById(id);
-        if (salaryById.isPresent()) {
-            Salary salary1 = salaryById.get();
-            salary1.setSalary(salary.getSalary());
-            salary1.setStartDate(salary.getStartDate());
-            salary1.setEndDate(salary.getEndDate());
-            salary1.setTaxes(salary.getTaxes());
-            salary1.setEmployee(salary.getEmployee());
-            salaryRepository.save(salary1);
-            List<Salary> salaryList = new ArrayList<>();
-            salaryRepository.findAll().forEach(c -> {
-                salaryList.add(c);
-            });
-            return salaryList;
-        } else {
-            throw new SalaryNotFoundException(String.format("No salary found with id: %s!", id));
-        }
+    public List<Salary> updateSalary(Salary salary) {
+        List<Salary> salaryList = new ArrayList<>();
+        salaryRepository.save(salary);
+        salaryRepository.findAll().forEach(c -> {
+            salaryList.add(c);
+        });
+        return salaryList;
     }
 
     public List<Salary> deleteSalary(Integer id) {

@@ -88,34 +88,21 @@ public class CompanyService {
     }
 
     public List<Company> addCompany(Company company) {
-        companyRepository.save(company);
         List<Company> companyList = new ArrayList<>();
+        companyRepository.save(company);
         companyRepository.findAll().forEach(c -> {
             companyList.add(c);
         });
         return companyList;
     }
 
-    public List<Company> updateCompany(Integer id, Company company) {
-        Optional<Company> companyById = companyRepository.findById(id);
-        if (companyById.isPresent()) {
-            Company company1 = companyById.get();
-            company1.setName(company.getName());
-            company1.setDomain(company.getDomain());
-            company1.setFiscalCode(company.getFiscalCode());
-            company1.setRegistrationNumber(company.getRegistrationNumber());
-            company1.setCAENCode(company.getCAENCode());
-            company1.setAddress(company.getAddress());
-            company1.setAdministratorName(company.getAdministratorName());
-            companyRepository.save(company1);
-            List<Company> companyList = new ArrayList<>();
-            companyRepository.findAll().forEach(c -> {
-                companyList.add(c);
-            });
-            return companyList;
-        } else {
-            throw new CompanyNotFoundException(String.format("No company found with id: %s!", id));
-        }
+    public List<Company> updateCompany(Company company) {
+        List<Company> companyList = new ArrayList<>();
+        companyRepository.save(company);
+        companyRepository.findAll().forEach(c -> {
+            companyList.add(c);
+        });
+        return companyList;
     }
 
     public List<Company> deleteCompany(Integer id) {

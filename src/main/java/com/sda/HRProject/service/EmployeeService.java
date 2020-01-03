@@ -76,7 +76,7 @@ public class EmployeeService {
         }
     }
 
-    public List<Employee> employeeList(String norm) {
+    public List<Employee> findByNorm(String norm) {
         List<Employee> employeeList = employeeRepository.findByNorm(norm);
         if (employeeList.isEmpty()) {
             throw new EmployeeNotFoundException(String.format("No employee found with norm: %s!", norm));
@@ -112,29 +112,13 @@ public class EmployeeService {
         return employeeList;
     }
 
-    public List<Employee> updateEmployee(Integer id, Employee employee) {
-        Optional<Employee> employeeById = employeeRepository.findById(id);
-        if (employeeById.isPresent()) {
-            Employee employee1 = employeeById.get();
-            employee1.setFirstName(employee.getFirstName());
-            employee1.setLastName(employee.getLastName());
-            employee1.setAddress(employee.getAddress());
-            employee1.setCNP(employee.getCNP());
-            employee1.setStudies(employee.getStudies());
-            employee1.setPosition(employee.getPosition());
-            employee1.setDaysOff(employee.getDaysOff());
-            employee1.setNorm(employee.getNorm());
-            employee1.setHireDate(employee.getHireDate());
-            employee1.setEndDate(employee.getEndDate());
-            employeeRepository.save(employee1);
-            List<Employee> employeeList = new ArrayList<>();
-            employeeRepository.findAll().forEach(c -> {
-                employeeList.add(c);
-            });
-            return employeeList;
-        } else {
-            throw new EmployeeNotFoundException(String.format("No employee found with id: %s!", id));
-        }
+    public List<Employee> updateEmployee(Employee employee) {
+        List<Employee> employeeList = new ArrayList<>();
+        employeeRepository.save(employee);
+        employeeRepository.findAll().forEach(c -> {
+            employeeList.add(c);
+        });
+        return employeeList;
     }
 
     public List<Employee> deleteEmployee(Integer id) {

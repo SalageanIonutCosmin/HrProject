@@ -83,16 +83,12 @@ public class UserService {
     }
 
     public List<User> updateUser( User user) {
-
             userRepository.save(user);
-
             List<User> userList = new ArrayList<>();
             userRepository.findAll().forEach(c -> {
                 userList.add(c);
             });
-
             return userList;
-
     }
 
     public List<User> deleteUser(Integer id) {

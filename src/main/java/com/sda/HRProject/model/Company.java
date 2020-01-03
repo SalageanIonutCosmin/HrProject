@@ -24,8 +24,8 @@ public class Company {
     @Column(name = "administratorName")
     private String administratorName;
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "emplyee_company",
-            joinColumns = {@JoinColumn(name = "idComapny")},
+    @JoinTable(name = "employee_company",
+            joinColumns = {@JoinColumn(name = "idCompany")},
             inverseJoinColumns = {@JoinColumn(name = "idEmployee")})
     private List<Employee> employeeList = new ArrayList<>();
 

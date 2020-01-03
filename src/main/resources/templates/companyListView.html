@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Companies</title>
+</head>
+<body>
+<h1 align="center" >Companies</h1>
+<table align="center" border="1%" style="border-collapse: collapse">
+    <thead>
+    <tr>
+        <th>IdCompany</th>
+        <th>Name</th>
+        <th>Domain</th>
+        <th>Fiscal Code</th>
+        <th>Registration Number</th>
+        <th>CAEN Code</th>
+        <th>Address</th>
+        <th>Administrator Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${companyList.isEmpty()}">
+        <td>No companies found!</td>
+    </tr>
+    <tr th:each="company:${companyList}">
+        <td th:text="${company.idCompany}"></td>
+        <td th:text="${company.name}"></td>
+        <td th:text="${company.domain}"></td>
+        <td th:text="${company.fiscalCode}"></td>
+        <td th:text="${company.registrationNumber}"></td>
+        <td th:text="${company.CAENCode}"></td>
+        <td th:text="${company.address}"></td>
+        <td th:text="${company.administratorName}"></td>
+        <td><a th:href="@{'/companies/update/'+${company.idCompany}}">Edit</a></td>
+        <td><a th:href="@{'/companies/delete/'+${company.idCompany}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<p align="center">
+    <a href="/companies/add">Add Company</a>
+</p>
+</body>
+</html>

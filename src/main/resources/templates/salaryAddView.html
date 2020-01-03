@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new salary</title>
+</head>
+<body>
+<div align="center">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully registered a company!</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-info">Unable to register a company!</div>
+    </div>
+    <form th:action="@{/salaries/add}" th:object="${salary}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="salary" class="control-label">Salary</label>
+                </td>
+                <td>
+                    <input id="salary" class="form-control" th:field="*{salary}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="startDate" class="control-label">Start Date</label>
+                </td>
+                <td>
+                    <input id="startDate" class="form-control" th:field="*{startDate}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="endDate" class="control-label">End Date</label>
+                </td>
+                <td>
+                    <input id="endDate" class="form-control" th:field="*{endDate}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="taxes" class="control-label">Taxes</label>
+                </td>
+                <td>
+                    <input id="taxes" class="form-control" th:field="*{taxes}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="idEmployee" class="control-label">Employee</label>
+                </td>
+                <td>
+                    <input id="idEmployee" class="form-control" th:field="*{employee}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn">Create</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

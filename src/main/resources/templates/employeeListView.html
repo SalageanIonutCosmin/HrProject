@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+<h1 align="center">Employees</h1>
+<table align="center" border="1%" style="border-collapse: collapse">
+    <thead>
+    <tr>
+        <th>IdEmployee</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>CNP</th>
+        <th>Studies</th>
+        <th>Position</th>
+        <th>Days Off</th>
+        <th>Norm</th>
+        <th>Hire Date</th>
+        <th>End Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${employeeList.isEmpty()}">
+        <td>No employees found!</td>
+    </tr>
+    <tr th:each="employee:${employeeList}">
+        <td th:text="${employee.idEmployee}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.address}"></td>
+        <td th:text="${employee.CNP}"></td>
+        <td th:text="${employee.studies}"></td>
+        <td th:text="${employee.position}"></td>
+        <td th:text="${employee.daysOff}"></td>
+        <td th:text="${employee.norm}"></td>
+        <td th:text="${employee.hireDate}"></td>
+        <td th:text="${employee.endDate}"></td>
+        <td><a th:href="@{'/employees/update/' + ${employee.idEmployee}}">Edit</a></td>
+        <td><a th:href="@{'/employees/delete/' + ${employee.idEmployee}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<p align="center">
+    <a href="/employees/add">Add employees</a>
+</p>
+</body>
+</html>

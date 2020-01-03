@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary</title>
+</head>
+<body>
+<h1 align="center">Salaries</h1>
+<table align="center" border="1%" style="border-collapse: collapse">
+    <thead>
+    <tr>
+        <th>Id Salary</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Taxes</th>
+        <th>Employee</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${salaryList.isEmpty()}">
+        <td>No salary found</td>
+    </tr>
+    <tr th:each="salary:${salaryList}">
+        <td th:text="${salary.idSalary}"></td>
+        <td th:text="${salary.salary}"></td>
+        <td th:text="${salary.startDate}"></td>
+        <td th:text="${salary.endDate}"></td>
+        <td th:text="${salary.taxes}"></td>
+        <td th:text="${salary.employee.firstName + ' ' + salary.employee.lastName}"></td>
+        <td><a th:href="@{'salaries/update/'+${salary.idSalary}}">Edit</a></td>
+        <td><a th:href="@{'salaries/delete/'+${salary.idSalary}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<p align="center">
+    <a href="/salaries/add">Add Salary</a>
+</p>
+</body>
+</html>
