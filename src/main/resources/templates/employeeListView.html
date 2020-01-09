@@ -1,53 +1,109 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Employees</title>
+    <title>HR Document Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
 </head>
-<body>
-<h1 align="center">Employees</h1>
-<table align="center" border="1%" style="border-collapse: collapse">
-    <thead>
-    <tr>
-        <th>IdEmployee</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Address</th>
-        <th>CNP</th>
-        <th>Studies</th>
-        <th>Position</th>
-        <th>Days Off</th>
-        <th>Norm</th>
-        <th>Hire Date</th>
-        <th>End Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${employeeList.isEmpty()}">
-        <td>No employees found!</td>
-    </tr>
-    <tr th:each="employee:${employeeList}">
-        <td th:text="${employee.idEmployee}"></td>
-        <td th:text="${employee.firstName}"></td>
-        <td th:text="${employee.lastName}"></td>
-        <td th:text="${employee.address}"></td>
-        <td th:text="${employee.CNP}"></td>
-        <td th:text="${employee.studies}"></td>
-        <td th:text="${employee.position}"></td>
-        <td th:text="${employee.daysOff}"></td>
-        <td th:text="${employee.norm}"></td>
-        <td th:text="${employee.hireDate}"></td>
-        <td th:text="${employee.endDate}"></td>
-        <td><a th:href="@{'/employees/update/' + ${employee.idEmployee}}">Edit</a></td>
-        <td><a th:href="@{'/employees/delete/' + ${employee.idEmployee}}">Delete</a></td>
-    </tr>
-    </tbody>
-</table>
-<br>
-<br>
-<br>
-<p align="center">
-    <a href="/employees/add">Add employees</a>
-</p>
+<body id="top">
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="logo" class="fl_left">
+            <h1><a href="/index">HR Document Generator</a></h1>
+        </div>
+        <div class="fl_right">
+            <ul class="nospace inline pushright">
+                <li><i class="fa fa-phone"></i> 0746255847</li>
+                <li><i class="fa fa-envelope-o"></i> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </header>
+</div>
+<div class="wrapper row2">
+    <nav id="mainav" class="clear">
+        <ul class="clear">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a class="drop" href="/companies">Companies</a>
+                <ul>
+                    <li><a href="/companies">Companies</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/employees">Employees</a>
+                <ul>
+                    <li><a href="/employees">Employees</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/users">Users</a>
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
+    <div class="overlay">
+        <section id="pageintro" class="clear">
+            <div class="fl_left">
+                <h1>EMPLOYEES</h1>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>IdEmployee</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>CNP</th>
+                    <th>Studies</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${employeeList.isEmpty()}">
+                    <td>No employees found!</td>
+                </tr>
+                <tr th:each="employee:${employeeList}">
+                    <td th:text="${employee.idEmployee}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.CNP}"></td>
+                    <td th:text="${employee.studies}"></td>
+                    <td th:text="${employee.position}"></td>
+                    <td th:text="${employee.salaryList}"></td>
+                    <td class="btn"><a th:href="@{'/employees/update/' + ${employee.idEmployee}}">Edit</a></td>
+                    <td class="btn"><a th:href="@{'/employees/delete/' + ${employee.idEmployee}}">Delete</a></td>
+                    <td class="btn"><a th:href="@{'/employees/pdfreport/'+ ${employee.idEmployee}}">Additional Act</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <p align="center">
+                <a class="btn" href="/employees/add">Add employees</a>
+            </p>
+        </section>
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="footer" class="clear">
+        <div class="one_quarter first">
+            <h6 class="title">Company details</h6>
+            <address>
+                Memphis<br>
+                Macilor 5<br>
+                Turda<br>
+                401022
+            </address>
+            <ul class="nospace">
+                <li class="btmspace-10"><span class="fa fa-phone"></span> 0746255847</li>
+                <li><span class="fa fa-envelope-o"></span> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </body>
 </html>

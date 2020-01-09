@@ -1,6 +1,8 @@
 package com.sda.HRProject.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "user")
 public class User {
@@ -19,6 +21,21 @@ public class User {
     private String email;
     @Column(name = "userType")
     private String userType;
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_user",
+            joinColumns = {@JoinColumn(name = "idUser")},
+            inverseJoinColumns = {@JoinColumn(name = "idRole")}
+    )
+    List<Role> roleList = new ArrayList<>();
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     public Integer getIdUser() {
         return idUser;

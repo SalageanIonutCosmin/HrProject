@@ -1,82 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Add new company</title>
+    <title>HR Document Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
 </head>
-<body>
-<div align="center">
-    <div th:if="${param.success}">
-        <div class="alert alert-info">You've successfully registered a company!</div>
-    </div>
-    <div th:if="${param.error}">
-        <div class="alert alert-info">Unable to register a company!</div>
-    </div>
-    <form th:action="@{/companies/add}" th:object="${company}" method="post">
-        <table>
-            <tr>
-                <td>
-                    <label for="name" class="control-label">Name</label>
-                </td>
-                <td>
-                    <input id="name" class="form-control" th:field="*{name}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="domain" class="control-label">Domain</label>
-                </td>
-                <td>
-                    <input id="domain" class="form-control" th:field="*{domain}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="fiscalCode" class="control-label">Fiscal Code</label>
-                </td>
-                <td>
-                    <input id="fiscalCode" class="form-control" th:field="*{fiscalCode}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="registrationNumber" class="control-label">Registration Number</label>
-                </td>
-                <td>
-                    <input id="registrationNumber" class="form-control" th:field="*{registrationNumber}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="CAENCode" class="control-label">CAEN Code</label>
-                </td>
-                <td>
-                    <input id="CAENCode" class="form-control" th:field="*{CAENCode}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="address" class="control-label">Address</label>
-                </td>
-                <td>
-                    <input id="address" class="form-control" th:field="*{address}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="administratorName" class="control-label">Administrator Name</label>
-                </td>
-                <td>
-                    <input id="administratorName" class="form-control" th:field="*{administratorName}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="btn">Create</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+<body id="top">
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="logo" class="fl_left">
+            <h1><a href="/index">HR Document Generator</a></h1>
+        </div>
+        <div class="fl_right">
+            <ul class="nospace inline pushright">
+                <li><i class="fa fa-phone"></i> 0746255847</li>
+                <li><i class="fa fa-envelope-o"></i> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </header>
 </div>
+<div class="wrapper row2">
+    <nav id="mainav" class="clear">
+        <ul class="clear">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a class="drop" href="/companies">Companies</a>
+                <ul>
+                    <li><a href="/companies">Companies</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/employees">Employees</a>
+                <ul>
+                    <li><a href="/employees">Employees</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/users">Users</a>
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
+    <div class="overlay">
+        <section id="pageintro" class="clear">
+            <div align="center">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered a company!</div>
+                </div>
+                <div th:if="${param.error}">
+                    <div class="alert alert-info">Unable to register a company!</div>
+                </div>
+                <form th:action="@{/companies/add}" th:object="${company}" method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="name" class="control-label">Name</label>
+                            </td>
+                            <td>
+                                <input id="name" class="form-control" th:field="*{name}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="domain" class="control-label">Domain</label>
+                            </td>
+                            <td>
+                                <input id="domain" class="form-control" th:field="*{domain}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="fiscalCode" class="control-label">Fiscal Code</label>
+                            </td>
+                            <td>
+                                <input id="fiscalCode" class="form-control" th:field="*{fiscalCode}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="registrationNumber" class="control-label">Registration Number</label>
+                            </td>
+                            <td>
+                                <input id="registrationNumber" class="form-control" th:field="*{registrationNumber}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="CAENCode" class="control-label">CAEN Code</label>
+                            </td>
+                            <td>
+                                <input id="CAENCode" class="form-control" th:field="*{CAENCode}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="address" class="control-label">Address</label>
+                            </td>
+                            <td>
+                                <input id="address" class="form-control" th:field="*{address}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="administratorName" class="control-label">Administrator Name</label>
+                            </td>
+                            <td>
+                                <input id="administratorName" class="form-control" th:field="*{administratorName}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="btn" align="center">
+                                <button type="submit">Create</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="footer" class="clear">
+        <div class="one_quarter first">
+            <h6 class="title">Company details</h6>
+            <address class="btmspace-15">
+                Memphis<br>
+                Macilor 5<br>
+                Turda<br>
+                401022
+            </address>
+            <ul class="nospace">
+                <li class="btmspace-10"><span class="fa fa-phone"></span> 0746255847</li>
+                <li><span class="fa fa-envelope-o"></span> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </body>
 </html>

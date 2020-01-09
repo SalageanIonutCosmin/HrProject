@@ -1,107 +1,141 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Create User</title>
+    <title>HR Document Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
 </head>
-<body>
-<h1 align="center">Welcome</h1>
-<div align="center">
-    <div th:if="${param.success}">
-        <div class="alert alert-info">You've successfully registered
+<body id="top">
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="logo" class="fl_left">
+            <h1><a href="/index">HR Document Generator</a></h1>
         </div>
-    </div>
-    <div th:if="${param.error}">
-        <div class="alert alert-info">Unable to create User!</div>
-    </div>
-    <form th:action="@{/users/add}" th:object="${user}" method="post">
-        <table>
-            <tr>
-                <td>
-                    <label for="firstName" class="control-label">FirstName</label>
-                </td>
-                <td>
-                    <input id="firstName" class="form-control" th:field="*{firstName}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="lastName" class="control-label">Last Name</label>
-                </td>
-                <td>
-                    <input id="lastName" class="form-control" th:field="*{lastName}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="email" class="control-label">Email</label>
-                </td>
-                <td>
-                    <input id="email" class="form-control" th:field="*{email}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="userName" class="control-label">Username</label>
-                </td>
-                <td>
-                    <input id="userName" class="form-control" th:field="*{username}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password" class="control-label">Password</label>
-                </td>
-                <td>
-                    <input id="password" class="form-control" type="password" th:field="*{password}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="userType" class="control-label">User Type</label>
-                </td>
-                <td>
-                    <!--                    <input id="userType" class="form-control" th:field="*{userType}">-->
-                    <select id="userType" class="form-control" th:field="*{userType}">
-                        <option value="Admin">Admin</option>
-                        <option value="User">User</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="btn">Create</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+        <div class="fl_right">
+            <ul class="nospace inline pushright">
+                <li><i class="fa fa-phone"></i> 0746255847</li>
+                <li><i class="fa fa-envelope-o"></i> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </header>
 </div>
+<div class="wrapper row2">
+    <nav id="mainav" class="clear">
+        <ul class="clear">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a class="drop" href="/companies">Companies</a>
+                <ul>
+                    <li><a href="/companies">Companies</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/employees">Employees</a>
+                <ul>
+                    <li><a href="/employees">Employees</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/users">Users</a>
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
+    <div class="overlay">
+        <section id="pageintro" class="clear">
+            <div align="center">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered
+                    </div>
+                </div>
+                <div th:if="${param.error}">
+                    <div class="alert alert-info">Unable to create User!</div>
+                </div>
+                <form th:action="@{/users/add}" th:object="${user}" method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="firstName" class="control-label">FirstName</label>
+                            </td>
+                            <td>
+                                <input id="firstName" class="form-control" th:field="*{firstName}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="lastName" class="control-label">Last Name</label>
+                            </td>
+                            <td>
+                                <input id="lastName" class="form-control" th:field="*{lastName}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email" class="control-label">Email</label>
+                            </td>
+                            <td>
+                                <input id="email" class="form-control" th:field="*{email}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="userName" class="control-label">Username</label>
+                            </td>
+                            <td>
+                                <input id="userName" class="form-control" th:field="*{username}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="password" class="control-label">Password</label>
+                            </td>
+                            <td>
+                                <input id="password" class="form-control" type="password" th:field="*{password}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="userType" class="control-label">User Type</label>
+                            </td>
+                            <td>
+                                <!--                    <input id="userType" class="form-control" th:field="*{userType}">-->
+                                <select id="userType" class="form-control" th:field="*{userType}">
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn">Create</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="footer" class="clear">
+        <div class="one_quarter first">
+            <h6 class="title">Company details</h6>
+            <address class="btmspace-15">
+                Memphis<br>
+                Macilor 5<br>
+                Turda<br>
+                401022
+            </address>
+            <ul class="nospace">
+                <li class="btmspace-10"><span class="fa fa-phone"></span> 0746255847</li>
+                <li><span class="fa fa-envelope-o"></span> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </body>
 </html>
-
-<!-- To use instead of table!!!! -->
-
-<!--        <div class="form-group" align="center">-->
-<!--            <label for="firstName" class="control-label">FirstName</label> -->
-<!--            <input id="firstName" class="form-control" th:field="*{firstName}"/>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="lastName" class="control-label">Last Name</label>-->
-<!--            <input id="lastName" class="form-control" th:field="*{lastName}"/>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="email" class="control-label">Email</label>-->
-<!--            <input id="email" class="form-control" th:field="*{email}">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="userName" class="control-label">Username</label>-->
-<!--            <input id="userName" class="form-control" th:field="*{username}"/>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="password" class="control-label">Password</label>-->
-<!--            <input id="password" class="form-control" type="password" th:field="*{password}"/>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="userType" class="control-label">User Type</label>-->
-<!--            <input id="userType" class="form-control" th:field="*{userType}">-->
-<!--        </div>-->

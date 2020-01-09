@@ -2,11 +2,17 @@ package com.sda.HRProject.controller;
 
 import com.sda.HRProject.model.Employee;
 import com.sda.HRProject.service.EmployeeService;
+import com.sda.HRProject.util.GenerateEmployeePDF;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @Controller
@@ -126,5 +132,19 @@ public class EmployeeController {
         long count = employeeService.count();
         modelMap.addAttribute("employeeList", count);
         return "employeeListView";
+    }
+
+    @GetMapping(value = "/pdfreport/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> employeeReport(@PathVariable(value = "id") Integer id) {
+        Employee employee = employeeService.findById(id);
+
+        ByteArrayInputStream bis = GenerateEmployeePDF.employeesReport(employee);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename:employeeReport.pdf");
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
     }
 }

@@ -26,12 +26,12 @@ public class SalaryController {
 
     @GetMapping(value = "/add")
     public String addNewSalaryView(ModelMap modelMap) {
-        modelMap.addAttribute("salary", new Salary());
+        modelMap.addAttribute("grossSalary", new Salary());
         return "salaryAddView";
     }
 
     @PostMapping(value = "/add")
-    public String addSalary(@ModelAttribute("salary") Salary salary, ModelMap modelMap) {
+    public String addSalary(@ModelAttribute("grossSalary") Salary salary, ModelMap modelMap) {
         List<Salary> salaryList = salaryService.addSalary(salary);
         modelMap.addAttribute("salaryList", salaryList);
         return "salaryListView";
@@ -40,12 +40,12 @@ public class SalaryController {
     @GetMapping(value = "/update/{id}")
     public String updateSalaryView(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
         Salary salary = salaryService.findById(id);
-        modelMap.addAttribute("salary", salary);
+        modelMap.addAttribute("grossSalary", salary);
         return "salaryUpdateView";
     }
 
     @PostMapping(value = "/update")
-    public String updateSalarySave(@ModelAttribute("salary") Salary salary, ModelMap modelMap) {
+    public String updateSalarySave(@ModelAttribute("grossSalary") Salary salary, ModelMap modelMap) {
         List<Salary> salaryList = salaryService.updateSalary(salary);
         modelMap.addAttribute("salaryList", salaryList);
         return "redirect:/salaries/";
@@ -58,9 +58,9 @@ public class SalaryController {
         return "redirect:/salaries/";
     }
 
-    @GetMapping(value = "salary")
-    public String findBySalary(@PathVariable(name = "salary") Integer salary, ModelMap modelMap) {
-        List<Salary> bySalary = salaryService.findBySalary(salary);
+    @GetMapping(value = "grossSalary")
+    public String findByGrossSalary(@PathVariable(name = "grossSalary") Float grossSalary, ModelMap modelMap) {
+        List<Salary> bySalary = salaryService.findByGrossSalary(grossSalary);
         modelMap.addAttribute("salaryList", bySalary);
         return "salaryListView";
     }
@@ -80,7 +80,7 @@ public class SalaryController {
     }
 
     @GetMapping(value = "taxes")
-    public String findByTaxes(@PathVariable(name = "taxes") Integer taxes, ModelMap modelMap) {
+    public String findByTaxes(@PathVariable(name = "taxes") Float taxes, ModelMap modelMap) {
         List<Salary> byTaxes = salaryService.findByTaxes(taxes);
         modelMap.addAttribute("salaryList", byTaxes);
         return "salaryListView";

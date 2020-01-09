@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <title>HR Document Generator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
+    <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <div class="wrapper row1">
@@ -45,44 +45,7 @@
 <div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
     <div class="overlay">
         <section id="pageintro" class="clear">
-            <div class="fl_left">
-                <h1>SALARIES</h1>
-            </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>Id Salary</th>
-                    <th>Gross Salary</th>
-                    <th>Net Salary</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Taxes</th>
-                    <th>Employee</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${salaryList.isEmpty()}">
-                    <td>No salary found</td>
-                </tr>
-                <tr th:each="salary:${salaryList}">
-                    <td th:text="${salary.idSalary}"></td>
-                    <td th:text="${salary.grossSalary}"></td>
-                    <td th:text="${salary.netSalary}"></td>
-                    <td th:text="${salary.startDate}"></td>
-                    <td th:text="${salary.endDate}"></td>
-                    <td th:text="${salary.taxes}"></td>
-                    <td th:text="${salary.employee.firstName + ' ' + salary.employee.lastName}"></td>
-                    <td><a th:href="@{'salaries/update/'+${salary.idSalary}}">Edit</a></td>
-                    <td><a th:href="@{'salaries/delete/'+${salary.idSalary}}">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <br>
-            <p align="center">
-                <a href="/salaries/add">Add Salary</a>
-            </p>
+
         </section>
     </div>
 </div>
@@ -90,7 +53,7 @@
     <footer id="footer" class="clear">
         <div class="one_quarter first">
             <h6 class="title">Company details</h6>
-            <address>
+            <address class="btmspace-15">
                 Memphis<br>
                 Macilor 5<br>
                 Turda<br>

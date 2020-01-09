@@ -1,0 +1,390 @@
+@charset "utf-8";
+@import url("fontawesome-4.3.0.min.css");
+@import url("framework.css");
+
+/* Top Bar
+--------------------------------------------------------------------------------------------------------------- */
+#topbar {
+    padding: 10px 0;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+#topbar .pushright li {
+    margin-right: 10px;
+    padding-right: 15px;
+    border-right: 1px solid;
+}
+
+#topbar .pushright li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+
+/* Header
+--------------------------------------------------------------------------------------------------------------- */
+#header {
+    padding: 50px 0;
+}
+
+#header .fl_right {
+    margin-top: 5px;
+}
+
+#header .pushright li {
+    margin-right: 20px;
+}
+
+#header .pushright li:last-child {
+    margin-right: 0;
+}
+
+#header .pushright li i {
+    margin-right: 5px;
+}
+
+/* Page Intro
+--------------------------------------------------------------------------------------------------------------- */
+#pageintro {
+    padding: 10% 0 10%;
+}
+
+#pageintro p .btn {
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+/* Footer
+--------------------------------------------------------------------------------------------------------------- */
+#footer {
+    padding: 50px 0;
+}
+
+#footer .title {
+    margin: 0 0 30px 0;
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid;
+    font-size: 18px;
+}
+
+#footer .linklist li {
+    margin-bottom: 10px;
+}
+
+#footer .linklist li:last-child {
+    margin-bottom: 0;
+}
+
+#footer .smallfont {
+    font-size: .8rem;
+    margin: 0;
+}
+
+/* Navigation
+--------------------------------------------------------------------------------------------------------------- */
+nav ul, nav ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#mainav, #breadcrumb, .sidebar nav {
+    line-height: normal;
+}
+
+#mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after {
+    position: absolute;
+    font-family: "FontAwesome";
+    font-size: 10px;
+    line-height: 10px;
+}
+
+/* Top Navigation */
+#mainav {
+}
+
+#mainav ul {
+    text-transform: uppercase;
+}
+
+#mainav ul ul {
+    z-index: 9999;
+    position: absolute;
+    width: 170px;
+    text-transform: none;
+}
+
+#mainav ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+#mainav li {
+    display: inline-block;
+    position: relative;
+    margin: 0 30px 0 0;
+    padding: 0;
+}
+
+#mainav li:last-child {
+    margin-right: 0;
+}
+
+#mainav li li {
+    width: 100%;
+    margin: 0;
+}
+
+#mainav li a {
+    display: block;
+    padding: 20px 0;
+}
+
+#mainav li li a {
+    border: solid;
+    border-width: 0 0 1px 0;
+}
+
+#mainav .drop {
+    padding-left: 15px;
+}
+
+#mainav li li a, #mainav li li .drop {
+    display: block;
+    margin: 0;
+    padding: 10px 15px;
+}
+
+#mainav .drop::after, #mainav li li .drop::after {
+    content: "\f0d7";
+}
+
+#mainav .drop::after {
+    top: 25px;
+    left: 5px;
+}
+
+#mainav li li .drop::after {
+    top: 15px;
+    left: 5px;
+}
+
+#mainav ul ul {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#mainav ul li:hover > ul {
+    visibility: visible;
+}
+
+#mainav form {
+    display: none;
+    margin: 0;
+    padding: 20px 0;
+}
+
+#mainav form select, #mainav form select option {
+    display: block;
+    cursor: pointer;
+    outline: none;
+}
+
+#mainav form select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid;
+}
+
+#mainav form select option {
+    margin: 5px;
+    padding: 0;
+    border: none;
+}
+
+/* Tables
+--------------------------------------------------------------------------------------------------------------- */
+table, tr, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table, th {
+    table-layout: auto;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 0%;
+}
+
+th, td {
+    padding: 1% 0.5% 0.5% 1%;
+    text-align: center;
+}
+
+td {
+    border-width: 0 1px;
+    text-align: center;
+    padding: 1% 0.5% 0.5% 1%;
+}
+
+/* Colours
+--------------------------------------------------------------------------------------------------------------- */
+body {
+    color: #FFFFFF;
+    background-color: #2C2C2C;
+}
+
+a {
+    color: #8096AA;
+}
+
+.overlay {
+    color: inherit;
+    background-color: rgba(168, 180, 193, .75);
+}
+
+.btn {
+    background-color: transparent;
+    border-color: #8096AA;
+}
+
+.dk-blue {
+    color: #445666;
+}
+
+/* Rows */
+.row0, .row0 a {
+    color: #888888;
+    background-color: #FFFFFF;
+}
+
+.row1, .row1 a {
+    color: #FFFFFF;
+}
+
+.row2, .row2 a {
+    color: #888888;
+    background-color: #F4F4F4;
+}
+
+.row2 {
+    border-color: #D7D7D7;
+}
+
+.row3 {
+    color: #888888;
+    background-color: #FFFFFF;
+}
+
+.row4 {
+    color: #888888;
+    background-color: #2C2C2C;
+}
+
+.row5, .row5 a {
+    color: #888888;
+    background-color: #2C2C2C;
+}
+
+.row5 {
+    border-color: #454545;
+}
+
+/* Top Bar */
+#topbar .pushright li {
+    border-color: #D7D7D7;
+}
+
+/* Page Intro */
+#pageintro .btn {
+    background-color: inherit;
+    border-color: inherit;
+}
+
+#pageintro .btn:hover {
+    background-color: #445666;
+    border-color: #445666;
+}
+
+/* Footer */
+#footer .title {
+    color: #FFFFFF;
+    border-color: #454545;
+}
+
+/* Navigation */
+#mainav li a {
+    color: inherit;
+}
+
+#mainav .active a, #mainav a:hover, #mainav li:hover > a {
+    color: #8096AA;
+    background-color: inherit;
+}
+
+#mainav li li a, #mainav .active li a {
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, .6);
+    border-color: rgba(0, 0, 0, .6);
+}
+
+#mainav li li:hover > a, #mainav .active .active > a {
+    color: #FFFFFF;
+    background-color: #8096AA;
+}
+
+#mainav form select {
+    color: #FFFFFF;
+    background-color: transparent;
+    border-color: #D7D7D7;
+}
+
+.container .sidebar nav a {
+    color: inherit;
+    border-color: #D7D7D7;
+}
+
+.container .sidebar nav a:hover {
+    color: #8096AA;
+}
+
+#backtotop {
+    color: #FFFFFF;
+    background-color: #8096AA;
+}
+
+/* Tables + Comments */
+table, th, td, #comments .avatar, #comments input, #comments textarea {
+    border-color: #D7D7D7;
+}
+
+th {
+    color: #FFFFFF;
+    background-color: #2C2C2C;
+}
+
+tr, #comments li, #comments input[type="submit"], #comments input[type="reset"] {
+    color: inherit;
+    background-color: transparent;
+}
+
+tr:nth-child(even), #comments li:nth-child(even) {
+    color: inherit;
+    background-color: transparent;
+}
+
+table a, #comments a {
+    background-color: inherit;
+}
+
+/* Max Wrapper Width - Laptop, Desktop etc.
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width: 978px) {
+    #topbar, #header, #pageintro, #mainav, #breadcrumb, .container, #cta, #footer, #copyright {
+        max-width: 978px;
+    }
+}

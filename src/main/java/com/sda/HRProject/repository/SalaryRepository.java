@@ -8,11 +8,11 @@ import java.util.List;
 
 @Repository
 public interface SalaryRepository extends JpaRepository<Salary, Integer> {
-    List<Salary> findBySalary(Integer salary);
+    List<Salary> findByGrossSalary(Float grossSalary);
 
     List<Salary> findByStartDate(String startDate);
 
     List<Salary> findByEndDate(String endDate);
 
-    List<Salary> findByTaxes(Integer taxes);
+    List<Salary> findByTaxes(Float taxes);
 }

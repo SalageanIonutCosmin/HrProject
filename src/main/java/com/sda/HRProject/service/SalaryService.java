@@ -31,10 +31,10 @@ public class SalaryService {
         }
     }
 
-    public List<Salary> findBySalary(Integer salary) {
-        List<Salary> salaryList = salaryRepository.findBySalary(salary);
+    public List<Salary> findByGrossSalary(Float grossSalary) {
+        List<Salary> salaryList = salaryRepository.findByGrossSalary(grossSalary);
         if (salaryList.isEmpty()) {
-            throw new SalaryNotFoundException(String.format("No salary found with salary: %s!", salary));
+            throw new SalaryNotFoundException(String.format("No grossSalary found with grossSalary: %s!", grossSalary));
         } else {
             return salaryList;
         }
@@ -58,7 +58,7 @@ public class SalaryService {
         }
     }
 
-    public List<Salary> findByTaxes(Integer taxes) {
+    public List<Salary> findByTaxes(Float taxes) {
         List<Salary> salaryList = salaryRepository.findByTaxes(taxes);
         if (salaryList.isEmpty()) {
             throw new SalaryNotFoundException(String.format("No salary found with taxes: %s!", taxes));
@@ -67,8 +67,8 @@ public class SalaryService {
         }
     }
 
-    public List<Salary> addSalary(Salary salary) {
-        salaryRepository.save(salary);
+    public List<Salary> addSalary(Salary grossSalary) {
+        salaryRepository.save(grossSalary);
         List<Salary> salaryList = new ArrayList<>();
         salaryRepository.findAll().forEach(c -> {
             salaryList.add(c);
@@ -76,9 +76,9 @@ public class SalaryService {
         return salaryList;
     }
 
-    public List<Salary> updateSalary(Salary salary) {
+    public List<Salary> updateSalary(Salary grossSalary) {
         List<Salary> salaryList = new ArrayList<>();
-        salaryRepository.save(salary);
+        salaryRepository.save(grossSalary);
         salaryRepository.findAll().forEach(c -> {
             salaryList.add(c);
         });

@@ -7,6 +7,7 @@ import com.sda.HRProject.repository.UserRepository;
 import com.sda.HRProject.service.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public List<UserDto> findAll(Integer page, Integer size) {
         List<UserDto> userDtos = new ArrayList<>();
@@ -74,7 +75,7 @@ public class UserService {
 
     public List<User> addUser(User user) {
         List<User> userList = new ArrayList<>();
-        user.setPassword(user.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         userRepository.findAll().forEach(c -> {
             userList.add(c);

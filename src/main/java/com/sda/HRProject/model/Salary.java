@@ -7,17 +7,18 @@ public class Salary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSalary;
-    @Column(name = "salary")
-    private String salary;
+    @Column(name = "grossSalary")
+    private Float grossSalary;
     @Column(name = "startDate")
     private String startDate;
     @Column(name = "endDate")
     private String endDate;
     @Column(name = "taxes")
-    private Integer taxes;
+    private Float taxes;
     @ManyToOne
     @JoinColumn(name = "idEmployee", nullable = false)
     private Employee employee;
+
 
     public Integer getIdSalary() {
         return idSalary;
@@ -27,13 +28,18 @@ public class Salary {
         this.idSalary = idSalary;
     }
 
-    public String getSalary() {
-        return salary;
+    public Float getGrossSalary() {
+        return grossSalary;
     }
 
-    public void setSalary(String salary) {
-        this.salary = salary;
+    public void setGrossSalary(Float grossSalary) {
+        this.grossSalary = grossSalary;
     }
+
+    public Float getNetSalary() {
+        return grossSalary - ((taxes / 100) * grossSalary);
+    }
+
 
     public String getStartDate() {
         return startDate;
@@ -51,11 +57,11 @@ public class Salary {
         this.endDate = endDate;
     }
 
-    public Integer getTaxes() {
+    public Float getTaxes() {
         return taxes;
     }
 
-    public void setTaxes(Integer taxes) {
+    public void setTaxes(Float taxes) {
         this.taxes = taxes;
     }
 
@@ -67,4 +73,8 @@ public class Salary {
         this.employee = employee;
     }
 
+    @Override
+    public String toString() {
+        return getNetSalary() + " Lei";
+    }
 }

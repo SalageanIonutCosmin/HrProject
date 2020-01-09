@@ -1,64 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Salary Edit</title>
+    <title>HR Document Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
 </head>
-<body>
-<h1 align="center">Company Edit</h1>
-<div align="center">
-    <div th:if="${param.success}">
-        <div class="alert alert-info">You've successfully registered</div>
-    </div>
-    <div th:if="${param.error}">
-        <div class="alert alert-info">Unable to create Company</div>
-    </div>
-    <form th:action="@{/salaries/update}" th:object="${salary}" method="post">
-        <table>
-            <tr>
-                <td>
-                    <label for="salary" class="control-label">Salary</label>
-                </td>
-                <td>
-                    <input id="salary" class="form-control" th:field="*{salary}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="startDate" class="control-label">Start Date</label>
-                </td>
-                <td>
-                    <input id="startDate" class="form-control" th:field="*{startDate}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="endDate" class="control-label">endDate</label>
-                </td>
-                <td>
-                    <input id="endDate" class="form-control" th:field="*{endDate}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="taxes" class="control-label">Taxes</label>
-                </td>
-                <td>
-                    <input id="taxes" class="form-control" th:field="*{taxes}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="idSalary" type="hidden" th:field="*{idSalary}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="btn">Update</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+<body id="top">
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="logo" class="fl_left">
+            <h1><a href="/index">HR Document Generator</a></h1>
+        </div>
+        <div class="fl_right">
+            <ul class="nospace inline pushright">
+                <li><i class="fa fa-phone"></i> 0746255847</li>
+                <li><i class="fa fa-envelope-o"></i> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </header>
 </div>
+<div class="wrapper row2">
+    <nav id="mainav" class="clear">
+        <ul class="clear">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a class="drop" href="/companies">Companies</a>
+                <ul>
+                    <li><a href="/companies">Companies</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/employees">Employees</a>
+                <ul>
+                    <li><a href="/employees">Employees</a></li>
+                </ul>
+            </li>
+            <li><a class="drop" href="/users">Users</a>
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
+    <div class="overlay">
+        <section id="pageintro" class="clear">
+            <div align="center">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered</div>
+                </div>
+                <div th:if="${param.error}">
+                    <div class="alert alert-info">Unable to create Company</div>
+                </div>
+                <form th:action="@{/salaries/update}" th:object="${salary}" method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="salary" class="control-label">Salary</label>
+                            </td>
+                            <td>
+                                <input id="salary" class="form-control" th:field="*{salary}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="startDate" class="control-label">Start Date</label>
+                            </td>
+                            <td>
+                                <input id="startDate" class="form-control" th:field="*{startDate}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="endDate" class="control-label">endDate</label>
+                            </td>
+                            <td>
+                                <input id="endDate" class="form-control" th:field="*{endDate}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="taxes" class="control-label">Taxes</label>
+                            </td>
+                            <td>
+                                <input id="taxes" class="form-control" th:field="*{taxes}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="idSalary" type="hidden" th:field="*{idSalary}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn">Update</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="footer" class="clear">
+        <div class="one_quarter first">
+            <h6 class="title">Company details</h6>
+            <address>
+                Memphis<br>
+                Macilor 5<br>
+                Turda<br>
+                401022
+            </address>
+            <ul class="nospace">
+                <li class="btmspace-10"><span class="fa fa-phone"></span> 0746255847</li>
+                <li><span class="fa fa-envelope-o"></span> salagean.ionutcosmin@yahoo.com</li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </body>
 </html>
