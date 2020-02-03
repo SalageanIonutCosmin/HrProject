@@ -1,6 +1,7 @@
 package com.sda.HRProject.controller;
 
 import com.sda.HRProject.model.Salary;
+import com.sda.HRProject.service.EmployeeService;
 import com.sda.HRProject.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import java.util.List;
 public class SalaryController {
     @Autowired
     private SalaryService salaryService;
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping(value = "")
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -24,9 +27,11 @@ public class SalaryController {
         return "salaryListView";
     }
 
-    @GetMapping(value = "/add")
-    public String addNewSalaryView(ModelMap modelMap) {
-        modelMap.addAttribute("grossSalary", new Salary());
+    @GetMapping(value = "/add/{idEmployee}")
+    public String addNewSalaryView(ModelMap modelMap, @PathVariable Integer idEmployee) {
+        Salary salary = new Salary();
+        salary.setEmployee(employeeService.findById(idEmployee));
+        modelMap.addAttribute("grossSalary", salary);
         return "salaryAddView";
     }
 
@@ -34,7 +39,7 @@ public class SalaryController {
     public String addSalary(@ModelAttribute("grossSalary") Salary salary, ModelMap modelMap) {
         List<Salary> salaryList = salaryService.addSalary(salary);
         modelMap.addAttribute("salaryList", salaryList);
-        return "salaryListView";
+        return "redirect:/employees";
     }
 
     @GetMapping(value = "/update/{id}")
@@ -48,14 +53,14 @@ public class SalaryController {
     public String updateSalarySave(@ModelAttribute("grossSalary") Salary salary, ModelMap modelMap) {
         List<Salary> salaryList = salaryService.updateSalary(salary);
         modelMap.addAttribute("salaryList", salaryList);
-        return "redirect:/salaries/";
+        return "redirect:/salaries";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String deleteSalary(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
         List<Salary> salaryList = salaryService.deleteSalary(id);
         modelMap.addAttribute("salaryList", salaryList);
-        return "redirect:/salaries/";
+        return "redirect:/salaries";
     }
 
     @GetMapping(value = "grossSalary")

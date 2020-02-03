@@ -56,7 +56,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Username</th>
-                    <th>User Type</th>
+<!--                    <th>User Type</th>-->
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -71,7 +71,6 @@
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.username}"></td>
-                    <td th:text="${user.userType}"></td>
                     <td><a th:href="@{'/users/update/' + ${user.idUser}}"> Edit</a></td>
                     <td><a th:href="@{'/users/delete/' + ${user.idUser}}">Delete</a></td>
                 </tr>

@@ -19,8 +19,6 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
-    @Column(name = "userType")
-    private String userType;
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_user",
@@ -83,13 +81,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 }

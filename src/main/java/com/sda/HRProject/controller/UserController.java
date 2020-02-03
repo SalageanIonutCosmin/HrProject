@@ -52,14 +52,14 @@ public class UserController {
                                  ModelMap modelMap) {
         List<User> userList = userService.updateUser(user);
         modelMap.addAttribute("userList", userList);
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
         List<User> userList = userService.deleteUser(id);
         modelMap.addAttribute("userList", userList);
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 
     @GetMapping(value = "{id}")

@@ -1,6 +1,8 @@
 package com.sda.HRProject.controller;
 
+import com.sda.HRProject.model.Company;
 import com.sda.HRProject.model.Employee;
+import com.sda.HRProject.service.CompanyService;
 import com.sda.HRProject.service.EmployeeService;
 import com.sda.HRProject.util.GenerateEmployeePDF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private CompanyService companyService;
 
     @GetMapping(value = "")
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -33,14 +37,25 @@ public class EmployeeController {
     @GetMapping(value = "/add")
     public String addEmployeeView(ModelMap modelMap) {
         modelMap.addAttribute("employee", new Employee());
+        modelMap.addAttribute("companyList", companyService.findAll(0, 100));
         return "employeeAddView";
     }
 
     @PostMapping(value = "/add")
-    public String addEmployee(@ModelAttribute("employee") Employee employee, ModelMap modelMap) {
-        List<Employee> employeeList = employeeService.addEmployee(employee);
-        modelMap.addAttribute("employeeList", employeeList);
-        return "employeeListView";
+    public String addEmployee(@ModelAttribute("employee") Employee employee,
+                              @ModelAttribute("companyList") Integer idCompany, ModelMap modelMap) {
+
+        Company c = companyService.findById(idCompany);
+        Integer lastContractNumber = c.getLastContractNumber();
+        employee.getCompanyList().add(c);
+        employee.setContractNumber(lastContractNumber + 1);
+        employee.defaultAdditionalActNumber();
+        Employee e = employeeService.addEmployee(employee);
+        c.getEmployeeList().add(e);
+        companyService.addCompany(c);
+        modelMap.addAttribute("employeeList", employeeService.findAll(0, 100));
+        modelMap.addAttribute("companyList", companyService.findAll(0, 100));
+        return "redirect:/employees";
     }
 
     @GetMapping(value = "/update/{id}")
@@ -52,16 +67,17 @@ public class EmployeeController {
 
     @PostMapping(value = "/update")
     public String updateEmployeeSave(@ModelAttribute("employee") Employee employee, ModelMap modelMap) {
-        List<Employee> employeeList = employeeService.updateEmployee(employee);
-        modelMap.addAttribute("employeeList", employeeList);
-        return "redirect:/employees/";
+        employee.setContractNumber(employee.getContractNumber());
+        employeeService.updateEmployee(employee);
+        modelMap.addAttribute("employeeList", employeeService.findAll(0, 100));
+        return "redirect:/employees";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String deleteEmployee(@PathVariable(name = "id") Integer id, ModelMap modelMap) {
         List<Employee> employeeList = employeeService.deleteEmployee(id);
         modelMap.addAttribute("employeeList", employeeList);
-        return "redirect:/employees/";
+        return "redirect:/employees";
     }
 
     @GetMapping(value = "id")
@@ -137,6 +153,8 @@ public class EmployeeController {
     @GetMapping(value = "/pdfreport/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> employeeReport(@PathVariable(value = "id") Integer id) {
         Employee employee = employeeService.findById(id);
+        employee.setAdditionalActNumber(employee.getAdditionalActNumber() + 1);
+        employeeService.updateEmployee(employee);
 
         ByteArrayInputStream bis = GenerateEmployeePDF.employeesReport(employee);
         HttpHeaders headers = new HttpHeaders();

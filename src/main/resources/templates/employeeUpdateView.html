@@ -91,7 +91,10 @@
                                 <label for="studies" class="control-label">Studies</label>
                             </td>
                             <td>
-                                <input id="studies" class="form-control" th:field="*{studies}">
+                                <select id="studies" class="form-control" th:field="*{studies}">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -137,6 +140,8 @@
                         <tr>
                             <td>
                                 <input id="idEmployee" type="hidden" th:field="*{idEmployee}">
+                                <input id="contractNumber" type="hidden" th:field="*{contractNumber}">
+                                <input id="additionalActNumber" type="hidden" th:field="*{additionalActNumber}">
                             </td>
                         </tr>
                         <tr>

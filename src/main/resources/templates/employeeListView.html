@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../static/layout/styles/layout.css" rel="stylesheet" th:href="@{/layout/styles/layout.css}">
+
 </head>
 <body id="top">
 <div class="wrapper row1">
@@ -45,45 +46,60 @@
 <div class="wrapper row1 bgded" style="background-image:url('images/demo/backgrounds/01.jpg')">
     <div class="overlay">
         <section id="pageintro" class="clear">
-            <div class="fl_left">
-                <h1>EMPLOYEES</h1>
+            <div class="container">
+                <div class="fl_left">
+                    <h1>EMPLOYEES</h1>
+                </div>
+                <div>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for employees..">
+                </div>
+                <table id="myTable">
+                    <thead>
+                    <tr class="header">
+                        <th class="th-sm">Id</th>
+                        <th class="th-sm">First Name</th>
+                        <th class="th-sm">Last Name</th>
+                        <th class="th-sm">CNP</th>
+                        <th class="th-sm">Studies</th>
+                        <th class="th-sm">Position</th>
+                        <th class="th-sm">Company</th>
+                        <th class="th-sm">Salary</th>
+                        <th class="th-sm">Contract</th>
+                        <th class="th-sm">Additional Act</th>
+                        <th class="th-sm" colspan="4">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${employeeList.isEmpty()}">
+                        <td>No employees found!</td>
+                    </tr>
+                    <tr th:each="employee:${employeeList}">
+                        <td th:text="${employee.idEmployee}"></td>
+                        <td th:text="${employee.firstName}"></td>
+                        <td th:text="${employee.lastName}"></td>
+                        <td th:text="${employee.CNP}"></td>
+                        <td th:text="${employee.studies}"></td>
+                        <td th:text="${employee.position}"></td>
+                        <td th:text="${employee.getCurrentCompany()}"></td>
+                        <td th:text="${employee.getCurrentSalary()}"></td>
+                        <td th:text="${employee.getContractNumber()}"></td>
+                        <td th:text="${employee.getAdditionalActNumber()}"></td>
+                        <td class="btn"><a th:href="@{'/employees/update/' + ${employee.idEmployee}}">Edit</a></td>
+                        <td class="btn"><a th:href="@{'/employees/delete/' + ${employee.idEmployee}}">Delete</a></td>
+                        <td class="btn"><a th:href="@{'/employees/pdfreport/'+ ${employee.idEmployee}}">Additional
+                            Act</a>
+                        </td>
+                        <td class="btn"><a th:href="@{'/salaries/add/'+${employee.idEmployee}}">Salary</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <br>
+                <p align="center">
+                    <a class="btn" href="/employees/add">Add employees</a>
+                </p>
             </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>IdEmployee</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>CNP</th>
-                    <th>Studies</th>
-                    <th>Position</th>
-                    <th>Salary</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${employeeList.isEmpty()}">
-                    <td>No employees found!</td>
-                </tr>
-                <tr th:each="employee:${employeeList}">
-                    <td th:text="${employee.idEmployee}"></td>
-                    <td th:text="${employee.firstName}"></td>
-                    <td th:text="${employee.lastName}"></td>
-                    <td th:text="${employee.CNP}"></td>
-                    <td th:text="${employee.studies}"></td>
-                    <td th:text="${employee.position}"></td>
-                    <td th:text="${employee.salaryList}"></td>
-                    <td class="btn"><a th:href="@{'/employees/update/' + ${employee.idEmployee}}">Edit</a></td>
-                    <td class="btn"><a th:href="@{'/employees/delete/' + ${employee.idEmployee}}">Delete</a></td>
-                    <td class="btn"><a th:href="@{'/employees/pdfreport/'+ ${employee.idEmployee}}">Additional Act</a></td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <br>
-            <p align="center">
-                <a class="btn" href="/employees/add">Add employees</a>
-            </p>
         </section>
     </div>
 </div>
@@ -105,5 +121,7 @@
     </footer>
 </div>
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+<script src="/layout/styles/findByFirstName.js"></script>
 </body>
 </html>

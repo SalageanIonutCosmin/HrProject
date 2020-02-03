@@ -103,22 +103,12 @@ public class EmployeeService {
         }
     }
 
-    public List<Employee> addEmployee(Employee employee) {
-        employeeRepository.save(employee);
-        List<Employee> employeeList = new ArrayList<>();
-        employeeRepository.findAll().forEach(c -> {
-            employeeList.add(c);
-        });
-        return employeeList;
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
-    public List<Employee> updateEmployee(Employee employee) {
-        List<Employee> employeeList = new ArrayList<>();
-        employeeRepository.save(employee);
-        employeeRepository.findAll().forEach(c -> {
-            employeeList.add(c);
-        });
-        return employeeList;
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> deleteEmployee(Integer id) {

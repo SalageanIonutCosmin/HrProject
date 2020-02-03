@@ -1,5 +1,7 @@
 package com.sda.HRProject.model;
 
+import com.sda.HRProject.service.exceptions.CompanyNotFoundException;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,11 @@ public class Employee {
     private String hireDate;
     @Column(name = "endDate")
     private String endDate;
+    @Column(name = "contractNumber")
+    private Integer contractNumber;
+    @Column(name = "additionalActNumber")
+    private Integer additionalActNumber;
+
     @ManyToMany(mappedBy = "employeeList")
     private List<Company> companyList = new ArrayList<>();
     @OneToMany(mappedBy = "employee")
@@ -39,7 +46,6 @@ public class Employee {
     }
 
     public List<Salary> getSalaryList() {
-
         return salaryList;
     }
 
@@ -141,5 +147,42 @@ public class Employee {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Company getCurrentCompany() {
+        if (companyList.size() > 0) {
+            return companyList.get(companyList.size() - 1);
+        } else {
+            throw new CompanyNotFoundException("No company was found!");
+        }
+    }
+
+    public String getCurrentSalary() {
+        if (salaryList.size() > 0) {
+            return String.valueOf(salaryList.get(salaryList.size() - 1).getNetSalary());
+        } else {
+            return "";
+        }
+    }
+
+    public Integer getContractNumber() {
+        return contractNumber;
+    }
+
+    public void setContractNumber(Integer contractNumber) {
+        this.contractNumber = contractNumber;
+    }
+
+    public Integer getAdditionalActNumber() {
+        return additionalActNumber;
+    }
+
+    public void setAdditionalActNumber(Integer additionalActNumber) {
+        this.additionalActNumber = additionalActNumber;
+    }
+
+    public Integer defaultAdditionalActNumber() {
+        additionalActNumber = 0;
+        return additionalActNumber;
     }
 }

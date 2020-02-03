@@ -7,7 +7,6 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String email;
-    private String userType;
 
     public Integer getIdUser() {
         return idUser;
@@ -55,13 +54,5 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 }

@@ -100,4 +100,19 @@ public class Company {
     public void setAdministratorName(String administratorName) {
         this.administratorName = administratorName;
     }
+
+    public int getLastContractNumber() {
+        Integer maxContract = 0;
+        for (Employee e : employeeList) {
+            if (e.getContractNumber() > maxContract) {
+                maxContract = e.getContractNumber();
+            }
+        }
+        return maxContract;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
